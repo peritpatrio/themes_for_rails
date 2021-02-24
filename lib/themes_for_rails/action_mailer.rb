@@ -1,22 +1,12 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 module ThemesForRails
-
   module ActionMailer
-
-    extend ActiveSupport::Concern
-
-    included do
-      include ThemesForRails::ActionController
-      alias_method_chain :mail, :theme
-    end
-
-    def mail_with_theme(headers = {}, &block)
+    def mail(headers = {}, &block)
       theme_opts = headers[:theme] || self.class.default[:theme]
       theme(theme_opts) if theme_opts
 
-      mail_without_theme(headers, &block)
+      super(headers, &block)
     end
-    
   end
-
 end
