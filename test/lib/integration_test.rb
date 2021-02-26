@@ -1,9 +1,9 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 require File.expand_path("test/test_helper.rb")
 
-class ThemesForRailsIntegrationTest < ::ActionController::IntegrationTest
-
-  should "work with Rails 3.0 default configuration" do
+class ThemesForRailsIntegrationTest < ::ActionDispatch::IntegrationTest
+  test "should work with Rails 5 default configuration" do
     asset_path = "/themes/default/stylesheets/style.css"
     get asset_path
     assert_equal 200, status

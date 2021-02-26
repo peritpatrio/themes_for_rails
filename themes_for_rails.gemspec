@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('rails', ["~> 5.0"])
   gem.add_development_dependency "sqlite3"
-  gem.add_development_dependency "test-unit"
-  gem.add_development_dependency "contest"
+  gem.add_development_dependency "minitest"
+  gem.add_development_dependency "minitest-rails"
   gem.add_development_dependency "mocha"
 end

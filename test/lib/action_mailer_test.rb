@@ -7,29 +7,35 @@ class Notifier < ActionMailer::Base
   default :theme => THEME
 
   def welcome(user)
-    mail(:theme => user.theme)
+    mail(subject: 'Welcome', theme: user.theme) do |format|
+      format.text { render plain: 'Welcome' }
+      format.html { render html: 'Welcome' }
+    end
   end
 
   def thanks(user)
-    mail
+    mail(subject: 'Thanks')  do |format|
+      format.text { render plain: 'Thanks' }
+      format.html { render html: 'Thanks' }
+    end
   end
 end
 
 module ThemesForRails
-  class ActionMailerTest < ::ActionController::TestCase
+  class ActionMailerTest < ::ActionMailer::TestCase
 
-    should "set theme using mail headers" do
+    test "should set theme using mail headers" do
       Notifier.any_instance.expects(:theme).with("purple")
 
       user = mock("User", :theme => "purple")
-      Notifier.welcome(user)
+      Notifier.new.welcome(user)
     end
 
-    should "set theme using mail default opts" do
+    test "should set theme using mail default opts" do
       Notifier.any_instance.expects(:theme).with("pink")
 
       user = mock("User")
-      Notifier.thanks(user)
+      Notifier.new.thanks(user)
     end
   end
 end
