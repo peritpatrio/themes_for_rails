@@ -29,7 +29,7 @@ module ThemesForRails
 
     def find_themed_asset(asset_name, asset_theme, asset_type, &block)
       path = asset_path(asset_name, asset_theme, asset_type)
-      if File.exists?(path)
+      if File.exist?(path)
         yield path, mime_type_for(request)
       elsif File.extname(path).blank?
         asset_name = "#{asset_name}.#{extension_from(request.path_info)}"
