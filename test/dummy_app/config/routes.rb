@@ -1,4 +1,4 @@
 DummyApp::Application.routes.draw do
   themes_for_rails
-  match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))', via: [:get]
 end
